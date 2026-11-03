@@ -6,8 +6,8 @@ UrbanPulse AI is an end-to-end air quality and weather analytics platform featur
 
 ## 🛠️ Team Ownership & Roles
 
-* **Developer 1:** Data Ingestion (OpenAQ / Open-Meteo), Database Storage, Data Normalization, FastAPI Backend Endpoints.
-* **Developer 2:** Exploratory Data Analysis (EDA), Feature Engineering, ML Baseline & Forecasting Models, Anomaly Detection, Streamlit Dashboard.
+* **Developer 1 ( Vishal Parmar ):** Data Ingestion (OpenAQ / Open-Meteo), Database Storage, Data Normalization, FastAPI Backend Endpoints.
+* **Developer 2 ( Ansh Purohit ):** Exploratory Data Analysis (EDA), Feature Engineering, ML Baseline & Forecasting Models, Anomaly Detection, Streamlit Dashboard.
 
 ---
 
