@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  fastapi-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: urbanpulse_api
+    ports:
+      - "8000:8000"
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  streamlit-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: urbanpulse_dashboard
+    ports:
+      - "8501:8501"
+    environment:
+      - FASTAPI_URL=http://fastapi-backend:8000
+    depends_on:
+      - fastapi-backend
+    restart: always

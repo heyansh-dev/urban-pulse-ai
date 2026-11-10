@@ -1,0 +1,59 @@
+name: UrbanPulse AI CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    name: Run Automated Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      - name: Execute Pytest Suite
+        run: |
+          pytest -v
+
+  docker-build:
+    name: Validate Docker Container Builds
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build FastAPI Backend Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile.api
+          push: false
+          tags: urbanpulse-api:latest
+
+      - name: Build Streamlit Dashboard Image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile.dashboard
+          push: false
+          tags: urbanpulse-dashboard:latest

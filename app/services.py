@@ -45,7 +45,10 @@ class PredictionEngine:
                         print(f"⚠️ Missing: {file_path}")
 
     def predict(self, request: PredictionRequest, preferred_model: str = "xgboost") -> PredictionResponse:
-        raw_data = [reading.dict() for reading in request.recent_readings]
+        raw_data = [
+            reading.model_dump() if hasattr(reading, "model_dump") else reading.dict()
+            for reading in request.recent_readings
+]
         df = pd.DataFrame(raw_data)
 
         df['timestamp'] = pd.to_datetime(df['timestamp'])
