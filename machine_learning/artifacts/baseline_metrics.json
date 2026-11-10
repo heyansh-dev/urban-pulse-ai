@@ -1,1 +1,26 @@
-{}
+{
+    "pm10": {
+        "horizon_1h": {
+            "MAE": 41.2173,
+            "RMSE": 46.8777,
+            "MAPE_percent": 101.948
+        },
+        "horizon_24h": {
+            "MAE": 50.5162,
+            "RMSE": 59.062,
+            "MAPE_percent": 101.2109
+        }
+    },
+    "pm25": {
+        "horizon_1h": {
+            "MAE": 43.8417,
+            "RMSE": 53.5919,
+            "MAPE_percent": 113.0512
+        },
+        "horizon_24h": {
+            "MAE": 52.8086,
+            "RMSE": 64.2616,
+            "MAPE_percent": 157.1831
+        }
+    }
+}
